@@ -1,0 +1,537 @@
+{
+  "meta": {
+    "version": "1.0",
+    "year": 2026,
+    "department": "광운대학교 정보융합학부",
+    "total_courses": 43,
+    "categorization": {
+      "foundational": "공통/기초 — 두 트랙 학생 모두에게 추천 (대부분 공통적으로 수강)",
+      "DS": "데이터사이언스 트랙 — DS 계열 유형(D*) 학생에게 강하게 추천",
+      "VT": "비주얼테크놀로지 트랙 — VT 계열 유형(V*) 학생에게 강하게 추천"
+    },
+    "course_changes_2026": {
+      "added": [
+        "Physical AI 실습",
+        "선형대수",
+        "웹엔지니어링실습"
+      ],
+      "renamed": [
+        {
+          "from": "가상현실",
+          "to": "확장현실"
+        },
+        {
+          "from": "오픈소스소프트웨어",
+          "to": "오픈소스소프트웨어실습"
+        },
+        {
+          "from": "실험설계및분석",
+          "to": "인과추론"
+        },
+        {
+          "from": "인터렉티브AI",
+          "to": "MLOps엔지니어링"
+        },
+        {
+          "from": "소셜네트워크분석",
+          "to": "네트워크데이터분석"
+        }
+      ],
+      "removed": [
+        "통계학개론",
+        "정보디자인프로그래밍실습",
+        "웹서비스설계및실습"
+      ],
+      "semester_changes": [
+        {
+          "course": "데이터마이닝",
+          "from": "3-2",
+          "to": "2-2"
+        },
+        {
+          "course": "빅데이터프로그래밍",
+          "from": "2-1",
+          "to": "1-2"
+        },
+        {
+          "course": "인공지능과컴퓨팅사고",
+          "from": "1-2",
+          "to": "1-1"
+        }
+      ]
+    }
+  },
+  "courses": [
+    {
+      "name": "대학수학및연습1",
+      "semester": "1-1",
+      "category": "foundational",
+      "type": "교선",
+      "is_new": false
+    },
+    {
+      "name": "인공지능과컴퓨팅사고",
+      "semester": "1-1",
+      "category": "foundational",
+      "type": "교선",
+      "is_new": false
+    },
+    {
+      "name": "프로그래밍기초",
+      "semester": "1-1",
+      "category": "foundational",
+      "type": "교선",
+      "is_new": false
+    },
+    {
+      "name": "대학수학및연습2",
+      "semester": "1-2",
+      "category": "foundational",
+      "type": "교선",
+      "is_new": false
+    },
+    {
+      "name": "고급C프로그래밍",
+      "semester": "1-2",
+      "category": "foundational",
+      "type": "교선",
+      "is_new": false
+    },
+    {
+      "name": "창의설계입문",
+      "semester": "1-2",
+      "category": "foundational",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "이산수학",
+      "semester": "1-2",
+      "category": "foundational",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "빅데이터프로그래밍",
+      "semester": "1-2",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "그래픽디자인",
+      "semester": "1-2",
+      "category": "VT",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "AI수학",
+      "semester": "2-1",
+      "category": "foundational",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "컴퓨터네트워크",
+      "semester": "2-1",
+      "category": "foundational",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "객체지향프로그래밍",
+      "semester": "2-1",
+      "category": "foundational",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "오픈소스소프트웨어실습",
+      "semester": "2-1",
+      "category": "foundational",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "인터랙티브미디어개론",
+      "semester": "2-1",
+      "category": "VT",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "선형대수",
+      "semester": "2-2",
+      "category": "foundational",
+      "type": "전선",
+      "is_new": true
+    },
+    {
+      "name": "자료구조",
+      "semester": "2-2",
+      "category": "foundational",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "모바일프로그래밍",
+      "semester": "2-2",
+      "category": "foundational",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "데이터마이닝",
+      "semester": "2-2",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "비주얼컴퓨팅",
+      "semester": "2-2",
+      "category": "VT",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "인터랙티브심리학",
+      "semester": "2-2",
+      "category": "VT",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "데이터애널리틱스",
+      "semester": "3-1",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "IoT시스템설계및실습",
+      "semester": "3-1",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "데이터베이스",
+      "semester": "3-1",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "기계학습",
+      "semester": "3-1",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "인과추론",
+      "semester": "3-1",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "컴퓨터비전",
+      "semester": "3-1",
+      "category": "VT",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "컴퓨터그래픽스",
+      "semester": "3-1",
+      "category": "VT",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "UX/UI디자인",
+      "semester": "3-1",
+      "category": "VT",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "텍스트마이닝",
+      "semester": "3-2",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "Physical AI 실습",
+      "semester": "3-2",
+      "category": "DS",
+      "type": "전선",
+      "is_new": true
+    },
+    {
+      "name": "딥러닝프로그래밍",
+      "semester": "3-2",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "빅데이터알고리즘",
+      "semester": "3-2",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "웹엔지니어링실습",
+      "semester": "3-2",
+      "category": "VT",
+      "type": "전선",
+      "is_new": true
+    },
+    {
+      "name": "확장현실",
+      "semester": "3-2",
+      "category": "VT",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "HCI와UX평가",
+      "semester": "3-2",
+      "category": "VT",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "데이터시각화",
+      "semester": "4-1",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "MLOps엔지니어링",
+      "semester": "4-1",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "네트워크데이터분석",
+      "semester": "4-1",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "영상AI생성모델",
+      "semester": "4-1",
+      "category": "VT",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "산학협력캡스톤설계1",
+      "semester": "4-1",
+      "category": "foundational",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "ICT융합전략",
+      "semester": "4-2",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "인공지능응용",
+      "semester": "4-2",
+      "category": "DS",
+      "type": "전선",
+      "is_new": false
+    },
+    {
+      "name": "산학협력캡스톤설계2",
+      "semester": "4-2",
+      "category": "foundational",
+      "type": "전선",
+      "is_new": false
+    }
+  ],
+  "type_recommendations": {
+    "DAR": {
+      "core": [
+        "데이터마이닝",
+        "기계학습",
+        "인과추론",
+        "데이터애널리틱스",
+        "텍스트마이닝",
+        "빅데이터알고리즘",
+        "딥러닝프로그래밍",
+        "네트워크데이터분석"
+      ],
+      "optional": [
+        "선형대수",
+        "AI수학",
+        "데이터베이스",
+        "데이터시각화",
+        "Physical AI 실습",
+        "비주얼컴퓨팅"
+      ],
+      "rationale": "D+A+R 조합. 이론적 깊이를 가진 분석·통계·알고리즘 과목을 core로 묶고, 수학적 토대(선형대수·AI수학)와 데이터 인프라(데이터베이스), 시각화·비전 응용 영역을 optional에 배치해 연구자 정체성을 폭넓게 받쳐준다."
+    },
+    "DAS": {
+      "core": [
+        "데이터애널리틱스",
+        "기계학습",
+        "데이터마이닝",
+        "인과추론",
+        "데이터시각화",
+        "ICT융합전략",
+        "데이터베이스",
+        "딥러닝프로그래밍"
+      ],
+      "optional": [
+        "AI수학",
+        "선형대수",
+        "텍스트마이닝",
+        "네트워크데이터분석",
+        "인공지능응용",
+        "UX/UI디자인"
+      ],
+      "rationale": "D+A+S 조합. 분석·모델링의 이론 토대 위에 데이터시각화·ICT융합전략 같은 비즈니스 적용 과목을 core에 배치한다. optional에는 분석 기초 수학과 산업 응용 과목을 두고, 분석 결과를 사용자에게 전달하는 역량을 위해 UX/UI디자인 1개를 반대 트랙에서 곁들였다."
+    },
+    "DPR": {
+      "core": [
+        "기계학습",
+        "딥러닝프로그래밍",
+        "데이터마이닝",
+        "Physical AI 실습",
+        "텍스트마이닝",
+        "빅데이터알고리즘",
+        "인과추론",
+        "IoT시스템설계및실습"
+      ],
+      "optional": [
+        "선형대수",
+        "AI수학",
+        "데이터베이스",
+        "네트워크데이터분석",
+        "데이터애널리틱스",
+        "컴퓨터비전"
+      ],
+      "rationale": "D+P+R 조합. 모델을 직접 구현하며 가설을 검증하는 과목(딥러닝프로그래밍·Physical AI 실습·IoT시스템설계및실습)을 core 중심에 두고, 텍스트마이닝·빅데이터알고리즘으로 응용 연구의 폭을 넓혔다. optional에는 수학 토대와 인접 응용을 배치하고 컴퓨터비전 1개를 반대 트랙에서 추가해 비전 응용 연구로의 확장 가능성을 열었다."
+    },
+    "DPS": {
+      "core": [
+        "기계학습",
+        "딥러닝프로그래밍",
+        "MLOps엔지니어링",
+        "빅데이터알고리즘",
+        "데이터마이닝",
+        "인공지능응용",
+        "데이터베이스",
+        "데이터애널리틱스"
+      ],
+      "optional": [
+        "선형대수",
+        "AI수학",
+        "Physical AI 실습",
+        "데이터시각화",
+        "IoT시스템설계및실습",
+        "웹엔지니어링실습"
+      ],
+      "rationale": "D+P+S 조합. 모델 학습부터 서비스 배포(MLOps엔지니어링)까지의 실전 파이프라인을 core로 묶고, 데이터베이스·데이터애널리틱스로 산업 현장의 즉시 활용 역량을 보강했다. optional의 웹엔지니어링실습 1개는 반대 트랙이지만 ML 서비스의 사용자 접점 구현 역량을 보완해주는 자연스러운 곁들임이다."
+    },
+    "VAR": {
+      "core": [
+        "HCI와UX평가",
+        "인터랙티브심리학",
+        "비주얼컴퓨팅",
+        "컴퓨터비전",
+        "컴퓨터그래픽스",
+        "UX/UI디자인",
+        "확장현실",
+        "인터랙티브미디어개론"
+      ],
+      "optional": [
+        "선형대수",
+        "그래픽디자인",
+        "영상AI생성모델",
+        "웹엔지니어링실습",
+        "모바일프로그래밍",
+        "인과추론"
+      ],
+      "rationale": "V+A+R 조합. HCI 평가 방법론과 인지·심리 이론을 핵심으로 시각·인지 영역의 학술적 깊이를 가진 과목을 core에 묶었다. optional의 인과추론 1개는 반대 트랙이지만 사용자 행동 연구의 인과적 분석 도구로 곁들이는 의미가 있다."
+    },
+    "VAS": {
+      "core": [
+        "UX/UI디자인",
+        "HCI와UX평가",
+        "인터랙티브심리학",
+        "인터랙티브미디어개론",
+        "그래픽디자인",
+        "비주얼컴퓨팅",
+        "확장현실",
+        "모바일프로그래밍"
+      ],
+      "optional": [
+        "선형대수",
+        "컴퓨터그래픽스",
+        "컴퓨터비전",
+        "영상AI생성모델",
+        "웹엔지니어링실습",
+        "ICT융합전략"
+      ],
+      "rationale": "V+A+S 조합. 사용자 경험의 체계적 설계(UX/UI디자인·HCI와UX평가·인터랙티브심리학)를 core 중심에 두고 모바일프로그래밍으로 산업 적용을 강화했다. optional의 ICT융합전략 1개는 반대 트랙이지만 비즈니스 임팩트를 정량적으로 풀어내는 전략가 정체성에 직결된다."
+    },
+    "VPR": {
+      "core": [
+        "컴퓨터그래픽스",
+        "컴퓨터비전",
+        "확장현실",
+        "비주얼컴퓨팅",
+        "영상AI생성모델",
+        "인터랙티브미디어개론",
+        "HCI와UX평가",
+        "인터랙티브심리학"
+      ],
+      "optional": [
+        "선형대수",
+        "그래픽디자인",
+        "UX/UI디자인",
+        "모바일프로그래밍",
+        "웹엔지니어링실습",
+        "Physical AI 실습"
+      ],
+      "rationale": "V+P+R 조합. 그래픽스·비전·확장현실의 직접 구현을 통한 탐구 과목을 core 중심에 두고, 영상AI생성모델·비주얼컴퓨팅으로 최신 시각 기술의 실험적 영역을 강화했다. optional의 Physical AI 실습 1개는 반대 트랙이지만 공간·실세계 인터랙션 연구로의 확장 가능성을 열어주는 곁들임이다."
+    },
+    "VPS": {
+      "core": [
+        "UX/UI디자인",
+        "확장현실",
+        "웹엔지니어링실습",
+        "컴퓨터그래픽스",
+        "인터랙티브미디어개론",
+        "영상AI생성모델",
+        "모바일프로그래밍",
+        "그래픽디자인"
+      ],
+      "optional": [
+        "선형대수",
+        "컴퓨터비전",
+        "비주얼컴퓨팅",
+        "HCI와UX평가",
+        "인터랙티브심리학",
+        "MLOps엔지니어링"
+      ],
+      "rationale": "V+P+S 조합. UX/UI디자인부터 웹엔지니어링실습까지 사용자가 실제로 만나는 인터페이스를 직접 구현하는 과목을 core 중심에 두고, 확장현실·영상AI생성모델로 최신 인터랙티브 콘텐츠 제작 역량을 강화했다. optional의 MLOps엔지니어링 1개는 반대 트랙이지만 시각·인터랙티브 모델을 서비스로 배포하는 단계에서 도움이 되는 곁들임이다."
+    }
+  }
+}

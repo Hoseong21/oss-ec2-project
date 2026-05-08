@@ -1,0 +1,10 @@
+# Career Compass — 정보융합학부 진로 나침반
+# 
+# Python 3.9+ 권장 (개발자는 3.9.6 사용)
+# 
+# 실행 방법:
+#   pip install -r requirements.txt
+#   streamlit run app.py
+
+streamlit==1.50.0
+plotly==6.7.0
