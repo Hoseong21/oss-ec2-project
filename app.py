@@ -79,7 +79,9 @@ def render_submitter_info():
 # 첫 화면
 def render_home():
     """첫 화면 — 앱 소개 + 시작 버튼"""
-    logger.info("[PAGE] 홈 화면 진입")
+    if st.session_state.get("_last_logged_page") != "home":
+        logger.info("[PAGE] 홈 화면 진입")
+        st.session_state["_last_logged_page"] = "home"
     st.title("🧭 Career Compass")
     st.subheader("정보융합학부 진로 나침반")
     
@@ -133,7 +135,9 @@ def render_home():
 # 로그인 화면
 def render_login():
     """로그인 화면 — 학번 + 이름 입력 + 검증"""
-    logger.info("[PAGE] 로그인 화면 진입")
+    if st.session_state.get("_last_logged_page") != "login":
+        logger.info("[PAGE] 로그인 화면 진입")
+        st.session_state["_last_logged_page"] = "login"
     st.title("🔐 로그인")
     st.markdown(
         "테스트 결과를 저장하고 이전 기록과 비교하기 위해 학번과 이름을 입력해주세요. "
@@ -203,6 +207,8 @@ def confirm_logout():
     
     with col2:
         if st.button("예, 로그아웃", type="primary", use_container_width=True, key="logout_confirm"):
+            user_name = st.session_state.get("name", "?")
+            logger.info(f"[CLICK] 로그아웃 → {user_name}님 세션 종료")
             # session_state 초기화
             for key in [
                 "student_id", "name", "user_data",
@@ -231,6 +237,7 @@ def confirm_delete_test(test_idx: int, type_code: str, type_name: str):
     
     with col2:
         if st.button("예, 삭제", type="primary", use_container_width=True, key="delete_confirm"):
+            logger.info(f"[CLICK] 테스트 기록 삭제 → {type_code} ({type_name}) 삭제")
             clear_cache_demo()
             student_id = st.session_state.get("student_id")
             if delete_test_record(student_id, test_idx):
@@ -283,13 +290,14 @@ def render_history():
     """이전 테스트 기록 페이지 — 카드 + 새로 테스트하기 + 로그아웃"""
     user_name = st.session_state.get("name", "사용자")
     tests_count = len(st.session_state.get("user_data", {}).get("tests", []))
-    logger.info(f"[PAGE] 기록 화면 진입 — {user_name}님 (기록 {tests_count}개)")
+    if st.session_state.get("_last_logged_page") != "history":
+        logger.info(f"[PAGE] 기록 화면 진입 — {user_name}님 (기록 {tests_count}개)")
+        st.session_state["_last_logged_page"] = "history"
     
     if st.session_state.get("scroll_to_top", False):
         scroll_to_top()
         st.session_state.scroll_to_top = False
 
-    user_name = st.session_state.get("name", "사용자")
     user_data = st.session_state.get("user_data", {})
     tests = user_data.get("tests", [])
     
@@ -387,7 +395,12 @@ def render_quiz():
     part_idx = st.session_state.get("current_part_idx", 0)
     axis_names = {0: "D_V (관심 영역)", 1: "A_P (문제 접근)", 2: "R_S (선호 환경)"}
     axis_label = axis_names.get(part_idx, "완료")
-    logger.info(f"[PAGE] 퀴즈 화면 진입 — Part {part_idx + 1}/3 ({axis_label})")
+    
+    current_state = ("quiz", part_idx)
+    if st.session_state.get("_last_logged_quiz_state") != current_state:
+        logger.info(f"[PAGE] 퀴즈 화면 진입 — Part {part_idx + 1}/3 ({axis_label})")
+        st.session_state["_last_logged_quiz_state"] = current_state
+        st.session_state["_last_logged_page"] = "quiz"
 
     data = load_questions()
     questions = data["questions"]
@@ -664,10 +677,18 @@ def render_result():
         idx = st.session_state.get("selected_test_idx", 0)
         tests = st.session_state.get("user_data", {}).get("tests", [])
         type_code = tests[idx].get("type", "?") if 0 <= idx < len(tests) else "?"
-        logger.info(f"[PAGE] 결과 화면 진입 (과거 기록 #{idx+1}) — {type_code} 유형")
+        current_state = ("result_history", idx, type_code)
+        if st.session_state.get("_last_logged_result_state") != current_state:
+            logger.info(f"[PAGE] 결과 화면 진입 (과거 기록 #{idx+1}) — {type_code} 유형")
+            st.session_state["_last_logged_result_state"] = current_state
+            st.session_state["_last_logged_page"] = "result"
     else:
         type_code = st.session_state.get("test_result", {}).get("type", "?")
-        logger.info(f"[PAGE] 결과 화면 진입 (신규 테스트) — {type_code} 유형")
+        current_state = ("result_new", type_code)
+        if st.session_state.get("_last_logged_result_state") != current_state:
+            logger.info(f"[PAGE] 결과 화면 진입 (신규 테스트) — {type_code} 유형")
+            st.session_state["_last_logged_result_state"] = current_state
+            st.session_state["_last_logged_page"] = "result"
     
     if st.session_state.get("scroll_to_top", False):
         scroll_to_top()
