@@ -33,3 +33,6 @@ users/
 build/
 dist/
 *.egg-info/
+
+# Logs
+logs/

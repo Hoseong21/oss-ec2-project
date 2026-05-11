@@ -5,6 +5,9 @@ Career Compass — 정보융합학부 진로 나침반 앱
 실행: streamlit run app.py
 """
 
+import logging
+import os
+
 import time
 from datetime import datetime
 
@@ -16,6 +19,16 @@ from modules.data_loader import load_questions, load_results, load_courses
 from modules.quiz import build_test_result
 from modules.result import render_result_page
 from modules.roadmap import build_roadmap_figure
+
+# 로깅 설정
+os.makedirs("logs", exist_ok=True)
+logging.basicConfig(
+    filename="logs/app.log",
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+    encoding="utf-8",
+)
+logger = logging.getLogger(__name__)
 
 # 페이지 설정
 st.set_page_config(
@@ -66,6 +79,7 @@ def render_submitter_info():
 # 첫 화면
 def render_home():
     """첫 화면 — 앱 소개 + 시작 버튼"""
+    logger.info("[PAGE] 홈 화면 진입")
     st.title("🧭 Career Compass")
     st.subheader("정보융합학부 진로 나침반")
     
@@ -107,6 +121,7 @@ def render_home():
     st.markdown("---")
     
     if st.button("테스트 시작하기 →", type="primary", use_container_width=True):
+        logger.info("[CLICK] 테스트 시작 버튼 → 로그인 페이지로 이동")
         st.session_state.page = "login"
         st.rerun()
     
@@ -118,6 +133,7 @@ def render_home():
 # 로그인 화면
 def render_login():
     """로그인 화면 — 학번 + 이름 입력 + 검증"""
+    logger.info("[PAGE] 로그인 화면 진입")
     st.title("🔐 로그인")
     st.markdown(
         "테스트 결과를 저장하고 이전 기록과 비교하기 위해 학번과 이름을 입력해주세요. "
@@ -244,6 +260,7 @@ def confirm_new_user(user_data: dict):
     
     with col2:
         if st.button("예, 시작", type="primary", use_container_width=True, key="newuser_confirm"):
+            logger.info(f"[CLICK] 신규 사용자 등록 확인 → {user_data['name']} ({user_data['student_id']})")
             # 신규 사용자 등록 (파일 저장)
             register_new_user(user_data)
             
@@ -264,6 +281,10 @@ def confirm_new_user(user_data: dict):
 # 이전 기록 화면
 def render_history():
     """이전 테스트 기록 페이지 — 카드 + 새로 테스트하기 + 로그아웃"""
+    user_name = st.session_state.get("name", "사용자")
+    tests_count = len(st.session_state.get("user_data", {}).get("tests", []))
+    logger.info(f"[PAGE] 기록 화면 진입 — {user_name}님 (기록 {tests_count}개)")
+    
     if st.session_state.get("scroll_to_top", False):
         scroll_to_top()
         st.session_state.scroll_to_top = False
@@ -286,6 +307,7 @@ def render_history():
     st.markdown("---")
     
     if st.button("✨ 새로 테스트하기", type="primary", use_container_width=True):
+        logger.info("[CLICK] 새로 테스트하기 → 퀴즈 시작")
         st.session_state.current_part_idx = 0
         st.session_state.part_answers = {}
         st.session_state.viewing_history = False
@@ -362,6 +384,10 @@ def render_quiz():
     Part 2: 문제 접근 방식 (A_P축 7문항)
     Part 3: 선호하는 환경 (R_S축 7문항)
     """
+    part_idx = st.session_state.get("current_part_idx", 0)
+    axis_names = {0: "D_V (관심 영역)", 1: "A_P (문제 접근)", 2: "R_S (선호 환경)"}
+    axis_label = axis_names.get(part_idx, "완료")
+    logger.info(f"[PAGE] 퀴즈 화면 진입 — Part {part_idx + 1}/3 ({axis_label})")
 
     data = load_questions()
     questions = data["questions"]
@@ -389,8 +415,6 @@ def render_quiz():
             "subtitle": "어떤 환경에서 가장 활발하게 움직이는지 알아봅니다.",
         },
     ]
-    
-    part_idx = st.session_state.get("current_part_idx", 0)
     
     if part_idx >= len(parts):
         ordered_answers = [
@@ -503,6 +527,7 @@ def render_quiz():
     with col1:
         if part_idx > 0:
             if st.button("← 이전 Part", use_container_width=True):
+                logger.info(f"[CLICK] Part {part_idx + 1} → 이전 Part로 돌아감")
                 st.session_state.current_part_idx -= 1
                 st.session_state.scroll_to_top = True
                 st.rerun()
@@ -512,6 +537,7 @@ def render_quiz():
         
         if all_answered:
             if st.button(next_label, type="primary", use_container_width=True):
+                logger.info(f"[CLICK] Part {part_idx + 1} 완료 → 다음 단계로 이동")
                 st.session_state.current_part_idx += 1
                 st.session_state.scroll_to_top = True
                 st.rerun()
@@ -565,6 +591,7 @@ def render_cache_demo():
     ]
     
     if st.button("⚡ 측정 시작", type="primary", use_container_width=True, key="cache_demo_run"):
+        logger.info("[CACHE] 측정 시작 — 4개 함수 캐싱 ON/OFF 비교")
         results = []
         for name, desc, func, args in targets:
             func.clear()
@@ -631,6 +658,17 @@ def clear_cache_demo():
 # 결과 화면
 def render_result():
     """결과 화면 렌더링 + viewing_history에 따라 다른 버튼 제공"""
+    viewing_history = st.session_state.get("viewing_history", False)
+    
+    if viewing_history:
+        idx = st.session_state.get("selected_test_idx", 0)
+        tests = st.session_state.get("user_data", {}).get("tests", [])
+        type_code = tests[idx].get("type", "?") if 0 <= idx < len(tests) else "?"
+        logger.info(f"[PAGE] 결과 화면 진입 (과거 기록 #{idx+1}) — {type_code} 유형")
+    else:
+        type_code = st.session_state.get("test_result", {}).get("type", "?")
+        logger.info(f"[PAGE] 결과 화면 진입 (신규 테스트) — {type_code} 유형")
+    
     if st.session_state.get("scroll_to_top", False):
         scroll_to_top()
         st.session_state.scroll_to_top = False
@@ -639,8 +677,6 @@ def render_result():
     if st.session_state.get("scroll_to_cache_demo", False):
         scroll_to_cache_demo()
         st.session_state.scroll_to_cache_demo = False
-
-    viewing_history = st.session_state.get("viewing_history", False)
     
     if viewing_history:
         idx = st.session_state.get("selected_test_idx", 0)

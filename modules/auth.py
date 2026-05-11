@@ -5,8 +5,11 @@ modules/auth.py
 
 import json
 import re
+import logging
 from datetime import datetime
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 # 사용자 데이터 저장 디렉토리
 USERS_DIR = Path("users")
@@ -95,11 +98,13 @@ def login(student_id: str, name: str) -> tuple[bool, str, dict]:
     # 유효성 검사 1: 학번
     valid_id, err_id = is_valid_student_id(student_id)
     if not valid_id:
+        logger.info(f"[LOGIN] 입력 검증 실패 — {err_id}")
         return False, err_id, {}
     
     # 유효성 검사 2: 이름
     valid_name, err_name = is_valid_name(name)
     if not valid_name:
+        logger.info(f"[LOGIN] 입력 검증 실패 — {err_name}")
         return False, err_name, {}
     
     student_id = student_id.strip()
@@ -116,15 +121,18 @@ def login(student_id: str, name: str) -> tuple[bool, str, dict]:
             user_data["name"] = name
             save_user(user_data)
             message = f"안녕하세요, {name}님! 이전 테스트 기록 {test_count}개 있음. (이름 정보가 갱신되었습니다)"
+            logger.info(f"[LOGIN] 로그인 성공 — {name} (기록 {test_count}개, 이름 갱신)")
         else:
             user_data["name"] = name
             save_user(user_data)
             message = f"안녕하세요, {name}님! 이전 테스트 기록 {test_count}개 있음."
+            logger.info(f"[LOGIN] 로그인 성공 — {name} (기록 {test_count}개)")
         
         user_data["is_new"] = False
         return True, message, user_data
     else:
         # 신규 사용자 — 파일 저장 보류, dict만 반환
+        logger.info(f"[LOGIN] 신규 사용자 식별 — 학번 {student_id}, 이름 {name}")
         user_data = {
             "student_id": student_id,
             "name": name,

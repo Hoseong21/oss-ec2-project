@@ -9,6 +9,10 @@ modules/quiz.py
 - 유형 결정: 각 축에서 더 높은 쪽 (D vs V, A vs P, R vs S)
 """
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 def calculate_scores(questions: list, answers: list) -> dict:
     """
     사용자 응답을 받아 3축 점수를 계산.
@@ -83,13 +87,17 @@ def build_test_result(questions: list, answers: list) -> dict:
             "answers": [0, 1, 0, ...]
         }
     """
+    logger.info("[QUIZ] 점수 계산 시작 — 21문항 응답 처리")
     raw_scores = calculate_scores(questions, answers)
     percentages = calculate_percentages(raw_scores)
     user_type = determine_type(raw_scores)
     
-    return {
+    result = {
         "type": user_type,
         "scores": percentages,
         "raw_scores": raw_scores,
         "answers": answers,
     }
+    logger.info(f"[QUIZ] 결과 산출 완료 — {result['type']} 유형")
+    
+    return result
